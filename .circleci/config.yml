@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/mern-starter
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: run a lint
+          command: npm run lint   
+   test:
+     steps:
+      - checkout
+      - run:
+          name: run a test
+          command: npm run test  
+   analyze:
+    steps:
+      - checkout
+      - run:
+          name: run ab analyze
+          command: npm audit  
+  
+    
+   
+workflows:
+  my_workflow:
+    jobs:
+      - build
+      - test
+         depends-on: build
+      - analyze
+         depends-on: test 
