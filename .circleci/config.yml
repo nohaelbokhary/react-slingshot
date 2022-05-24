@@ -10,13 +10,13 @@ jobs:
       - run:
           name: run a lint
           command: npm run lint   
-   test:
-     steps:
+  test:
+    steps:
       - checkout
       - run:
           name: run a test
           command: npm run test  
-   analyze:
+  analyze:
     steps:
       - checkout
       - run:
@@ -30,6 +30,4 @@ workflows:
     jobs:
       - build
       - test
-         depends-on: build
       - analyze
-         depends-on: test 
